@@ -6,12 +6,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-public class FileManager20102 extends JFrame {
+public class TestFileManager extends JFrame {
 	JTree tree;
 	
 	DefaultMutableTreeNode root = new DefaultMutableTreeNode("디스크 드라이브(C:)");
@@ -21,16 +22,23 @@ public class FileManager20102 extends JFrame {
 	String[] Language = {"한국어","English"};
 	
 	
-	public FileManager20102() {
-		super("/home/");
+	public TestFileManager() {
+		super("FileManager");
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
 		JPanel p3 = new JPanel();
+		JPanel p4 = new JPanel();
 		
+		String header[] = {"Name","Size","Modified"};
+		String contents[][] = {};
 		
 		JLabel l1 = new JLabel("File Explorer");
+		JLabel l2 = new JLabel("/home/");
 		
-		JTextArea ta1 = new JTextArea(25,50	);
+		
+		JTable t1 = new JTable(contents,header);
+		JScrollPane scrollpane = new JScrollPane(t1);
+		
 		
 		JComboBox cb1 = new JComboBox(Language);
 		
@@ -67,23 +75,25 @@ public class FileManager20102 extends JFrame {
 		add(p1,BorderLayout.SOUTH);
 		add(p2,BorderLayout.WEST);
 		add(p3,BorderLayout.EAST);
-		
+		add(p4,BorderLayout.NORTH);
 		
 		treeModel = new DefaultTreeModel(root);
 		tree = new JTree(treeModel);
 		
-		p2.add(tree);
+		
 		p1.add(l1);
 		p1.add(cb1);
-		p3.add(ta1);
-		setSize(500,550);
+		p2.add(tree);
+		p3.add(scrollpane);
+		p4.add(l2);
+		setSize(800,550);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-			new FileManager20102();
+			new TestFileManager();
 		
 		
 }
